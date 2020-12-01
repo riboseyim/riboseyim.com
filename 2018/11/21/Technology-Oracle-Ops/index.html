@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Oracle 数据库日常维护 | Ribose Yim&#39;s Tech Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="description" content="摘要 【编辑中】 init params files tree">
+<meta name="keywords" content="DevOps,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 数据库日常维护">
+<meta property="og:url" content="https://riboseyim.com/2018/11/21/Technology-Oracle-Ops/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Tech Blog">
+<meta property="og:description" content="摘要 【编辑中】 init params files tree">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-12-01T08:28:59.226Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle 数据库日常维护">
+<meta name="twitter:description" content="摘要 【编辑中】 init params files tree">
+
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Tech Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/Engineering">工程</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.github.io">RiboseYim&#39;s HOME</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Tech Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">愿交天下士，罄我怀中藏。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Technology-Oracle-Ops" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/21/Technology-Oracle-Ops/" class="article-date">
+  <time datetime="2018-11-21T06:03:16.000Z" itemprop="datePublished">2018-11-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Oracle 数据库日常维护
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/11/21/Technology-Oracle-Ops/" data-id="cki5q0rh100j37u9kxj5nem8y" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>【编辑中】</li>
+<li>init params</li>
+<li>files tree</li>
+</ul>
+<a id="more"></a>
+<h2 id="INSTALL"><a href="#INSTALL" class="headerlink" title="INSTALL"></a>INSTALL</h2><h4 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sql&gt;alter user USER_NAME identified by USER_PASSWD;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查看用户的proifle，默认：default</span></span><br><span class="line">sql&gt;SELECT username,PROFILE FROM dba_users where username='admin' ;</span><br><span class="line"></span><br><span class="line">sql&gt;SELECT * FROM dba_profiles s WHERE s.profile='DEFAULT' AND resource_name='PASSWORD_LIFE_TIME';</span><br><span class="line"></span><br><span class="line">sql&gt;ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;</span><br><span class="line">sql&gt;ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME 90;</span><br></pre></td></tr></table></figure>
+<h4 id="Init-Params"><a href="#Init-Params" class="headerlink" title="Init Params"></a>Init Params</h4><ul>
+<li><p>初始化参数文件（Initialization Parameters Files,pfile）<br>pfile 默认为“init+例程名.ora”,文本文件，可以手工编辑。</p>
+</li>
+<li><p>spfile:服务器参数文件（Server Parameter Files）<br>spfile 默认为“spfile+例程名.ora”，<strong>不能用vi编辑器对其中参数进行修改，只能通过命令在线修改。</strong></p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- $ORACLE_HOME/dbs/spfiledbnms.ora</span></span><br><span class="line"><span class="comment">--pfile格式转换：将二进制转换为文本格式</span></span><br><span class="line">SQL&gt; CREATE Spfile FROM pfile;</span><br><span class="line">这种方法，然后再用vi编辑器对其中的参数进行直观修改，以达到方便的目的。</span><br><span class="line"></span><br><span class="line"><span class="comment">--pfile格式转换：将文本转为二进制格式</span></span><br><span class="line">SQL&gt; CREATE pfile FROM Spfile;</span><br><span class="line"></span><br><span class="line"><span class="comment"># df -k /dev/shm</span></span><br><span class="line">Filesystem     1K-blocks  Used Available <span class="keyword">Use</span>% Mounted <span class="keyword">on</span></span><br><span class="line">tmpfs            <span class="number">4194304</span>   <span class="number">288</span>   <span class="number">4194016</span>   <span class="number">1</span>% /dev/shm</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams193.htm#REFRN10256" target="_blank" rel="noopener">SGA</a></li>
+<li><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams157.htm#REFRN10165" target="_blank" rel="noopener">pga_aggregate_target</a></li>
+</ul>
+<p>SGA_TARGET specifies the total size of all SGA components.<br>If SGA_TARGET is specified, then the following memory pools are automatically sized:</p>
+<ul>
+<li>Buffer cache (DB_CACHE_SIZE)</li>
+<li>Shared pool (SHARED_POOL_SIZE)</li>
+<li>Large pool (LARGE_POOL_SIZE)</li>
+<li>Java pool (JAVA_POOL_SIZE)</li>
+<li>Streams pool (STREAMS_POOL_SIZE)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pga_aggregate_target = total memory - SGA</span><br></pre></td></tr></table></figure>
+<p>When setting this parameter, you should examine the total memory on your system that is available to the Oracle instance and subtract the SGA. You can assign the remaining memory to PGA_AGGREGATE_TARGET.</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># example:vi $ORACLE_HOME/dbs/spfiledbnms.ora</span></span><br><span class="line"><span class="comment"># dbnms.__java_pool_size=939524096</span></span><br><span class="line"><span class="comment"># dbnms.__large_pool_size=805306368</span></span><br><span class="line">dbnms.__java_pool_size=<span class="number">4294967296</span></span><br><span class="line">dbnms.__large_pool_size=<span class="number">4294967296</span></span><br><span class="line">dbnms.__oracle_base=<span class="string">'/oracle/product'</span><span class="comment">#ORACLE_BASE set from environment</span></span><br><span class="line"><span class="comment">#dbnms.__pga_aggregate_target=16106127360</span></span><br><span class="line">dbnms.__pga_aggregate_target=<span class="number">0</span></span><br><span class="line"><span class="comment">#dbnms.__sga_target=64424509440</span></span><br><span class="line">dbnms.sga_target=<span class="number">4294967296</span></span><br><span class="line">dbnms.__shared_io_pool_size=<span class="number">0</span></span><br><span class="line">dbnms.__shared_pool_size=<span class="number">4697620480</span></span><br><span class="line">dbnms.__streams_pool_size=<span class="number">0</span></span><br><span class="line">*.audit_file_dest=<span class="string">'/oracle/product/admin/dbnms/adump'</span></span><br><span class="line">*.audit_trail=<span class="string">'db'</span></span><br><span class="line">*.compatible=<span class="string">'11.2.0.4.0'</span></span><br><span class="line">*.control_files=<span class="string">'/oradata1/dbnms/control01.ctl'</span>,<span class="string">'/oradata2/dbnms/control02.ctl'</span></span><br><span class="line">*.db_block_size=<span class="number">8192</span></span><br><span class="line">*.db_domain=<span class="string">''</span></span><br><span class="line">*.db_name=<span class="string">'dbnms'</span></span><br><span class="line">*.diagnostic_dest=<span class="string">'/oracle/product'</span></span><br><span class="line">*.dispatchers=<span class="string">'(PROTOCOL=TCP) (SERVICE=dbnms)'</span></span><br><span class="line">*.open_cursors=<span class="number">300</span></span><br><span class="line"><span class="comment">#*.pga_aggregate_target=16106127360</span></span><br><span class="line">*.pga_aggregate_target=<span class="number">0</span></span><br><span class="line">*.processes=<span class="number">1500</span></span><br><span class="line">*.remote_login_passwordfile=<span class="string">'EXCLUSIVE'</span></span><br><span class="line">*.sessions=<span class="number">1655</span></span><br><span class="line"><span class="comment"># *.sga_target=64424509440</span></span><br><span class="line">*.sga_target=<span class="number">4294967296</span></span><br><span class="line">*.undo_tablespace=<span class="string">'UNDOTBS1'</span></span><br></pre></td></tr></table></figure>
+<h2 id="Optimizing"><a href="#Optimizing" class="headerlink" title="Optimizing"></a>Optimizing</h2><h4 id="Metric"><a href="#Metric" class="headerlink" title="Metric"></a>Metric</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">'vsession:'</span>||<span class="keyword">count</span>(*)||<span class="string">''</span> <span class="keyword">as</span> moni <span class="keyword">from</span> v$<span class="keyword">session</span></span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">'maxsessions:'</span>||<span class="keyword">value</span>||<span class="string">''</span> <span class="keyword">as</span> sessions <span class="keyword">from</span> v$parameter <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'sessions'</span></span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">'vprocess:'</span>||<span class="keyword">count</span>(*)||<span class="string">''</span> <span class="keyword">from</span> v$process</span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">'maxprocess:'</span>||<span class="keyword">value</span>||<span class="string">''</span> <span class="keyword">from</span> v$parameter <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'processes'</span></span><br></pre></td></tr></table></figure>
+<h4 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v$event_name;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v$<span class="keyword">sql</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> p.spid, s.osuser, s.program ,p.* <span class="keyword">from</span> v$<span class="keyword">session</span> s,v$process p <span class="keyword">where</span> s.paddr=p.addr   <span class="keyword">and</span> s.SID=<span class="string">'8463'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">---eg:Buffer Busy Waits</span></span><br><span class="line"><span class="keyword">select</span>   sql_text   </span><br><span class="line"><span class="keyword">from</span>   v$<span class="keyword">sql</span> t1, v$<span class="keyword">session</span> t2, v$session_wait   t3  </span><br><span class="line"><span class="keyword">where</span>   <span class="number">1</span>=<span class="number">1</span></span><br><span class="line"><span class="keyword">and</span> t1.address=t2.sql_address   </span><br><span class="line"><span class="keyword">and</span> t1.hash_value=t2.sql_hash_value</span><br><span class="line"><span class="keyword">and</span> t2.sid=t3.sid   </span><br><span class="line"><span class="keyword">and</span> t3.event=<span class="string">'buffer busy waits'</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><ul>
+<li>TOP IO SQL</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- - TOP IO SQL</span></span><br><span class="line"><span class="keyword">select</span> p.spid,s.sid,s.machine,s.program,q.disk_reads,q.sql_text</span><br><span class="line"><span class="keyword">from</span> v$process p,v$<span class="keyword">session</span> s,v$<span class="keyword">sql</span> q</span><br><span class="line"><span class="keyword">where</span> p.addr=s.paddr <span class="keyword">and</span> s.sql_id=q.sql_id</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="INDEX"><a href="#INDEX" class="headerlink" title="INDEX"></a>INDEX</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">analyze</span> <span class="keyword">table</span> TABLENAME <span class="keyword">compute</span> <span class="keyword">statistics</span>;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sid</span>,opname,target,sofar,totalwork,trunc(sofar/totalwork*<span class="number">100</span>,<span class="number">2</span>)||<span class="string">'%'</span> <span class="keyword">as</span> perwork</span><br><span class="line"><span class="keyword">from</span> v$session_longops <span class="keyword">where</span> sofar!=totalwork <span class="keyword">and</span> <span class="keyword">sid</span>=<span class="string">'1479'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 21:16 1	1479	Table Scan	SLVIEW.FLUX	6457	128417	5.02%</span></span><br><span class="line"><span class="comment">-- 1	1479	Table Scan	TEST.TABLE_A	14813	128417	11.53%</span></span><br></pre></td></tr></table></figure>
+<h4 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="string">'alter system kill session '''</span>||<span class="string">''</span>||s.sid||<span class="string">','</span>||s.serial<span class="comment">#||''';'</span></span><br><span class="line"><span class="keyword">from</span> v$locked_object lo,dba_objects ao,v$<span class="keyword">session</span> s</span><br><span class="line"><span class="keyword">where</span> ao.object_id = lo.object_id <span class="keyword">and</span> lo.session_id = s.sid</span><br><span class="line"><span class="keyword">and</span> object_name = <span class="string">'TABLENAME'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="comment">/*+ rule */</span> s.username,<span class="keyword">decode</span>(l.type,<span class="string">'TM'</span>,<span class="string">'TABLE LOCK'</span>,<span class="string">'TX'</span>,<span class="string">'ROW LOCK'</span>,<span class="literal">NULL</span>) LOCK_LEVEL,</span><br><span class="line">o.owner,o.object_name,o.object_type,s.sid,s.serial<span class="comment">#,s.terminal,s.machine,s.program,s.osuser,l.CTIME</span></span><br><span class="line"><span class="keyword">FROM</span> v$<span class="keyword">session</span> s,v$<span class="keyword">lock</span> l,dba_objects o <span class="keyword">WHERE</span> l.sid = s.sid <span class="keyword">AND</span> l.id1 = o.object_id(+)</span><br><span class="line"><span class="keyword">and</span> machine =<span class="string">'HOST_NAME'</span></span><br><span class="line"><span class="keyword">and</span> owner=<span class="string">'USER_NAME'</span>  </span><br><span class="line"><span class="keyword">and</span> object_name=<span class="string">'TABLE_NAME'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> t2.username,  </span><br><span class="line">       t2.sid,  </span><br><span class="line">       t2.serial<span class="comment">#,  </span></span><br><span class="line">       t3.object_name,  </span><br><span class="line">       t2.OSUSER,  </span><br><span class="line">       t2.MACHINE,  </span><br><span class="line">       t2.PROGRAM,  </span><br><span class="line">       t2.LOGON_TIME,  </span><br><span class="line">       t2.COMMAND,  </span><br><span class="line">       t2.LOCKWAIT,  </span><br><span class="line">       t2.SADDR,  </span><br><span class="line">       t2.PADDR,  </span><br><span class="line">       t2.TADDR,  </span><br><span class="line">       t2.SQL_ADDRESS,  </span><br><span class="line">       t1.LOCKED_MODE  </span><br><span class="line">  <span class="keyword">from</span> v$locked_object t1, v$<span class="keyword">session</span> t2, dba_objects t3  </span><br><span class="line"><span class="keyword">where</span> t1.session_id = t2.sid  </span><br><span class="line">   <span class="keyword">and</span> t1.object_id = t3.object_id  </span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> t2.logon_time;</span><br></pre></td></tr></table></figure>
+<h4 id="Constraint"><a href="#Constraint" class="headerlink" title="Constraint"></a>Constraint</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.constraint_name, a.table_name, b.constraint_name</span><br><span class="line"><span class="keyword">from</span> user_constraints a, user_constraints b</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">a.constraint_type = <span class="string">'R'</span> <span class="comment">--外键</span></span><br><span class="line"><span class="comment">--and b.constraint_type = 'P' --主键</span></span><br><span class="line"><span class="keyword">and</span> a.r_constraint_name = b.constraint_name</span><br><span class="line"><span class="keyword">and</span> a.constraint_name <span class="keyword">like</span> <span class="string">'%KEY_NAME%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 启用外键约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">enable</span> <span class="keyword">constraint</span> constraint_name</span><br><span class="line"><span class="comment">-- 禁用外键约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">disable</span> <span class="keyword">constraint</span> constraint_name</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="string">'alter table '</span>||table_name||<span class="string">' enable constraint '</span>||constraint_name||<span class="string">';'</span> <span class="keyword">from</span> user_constraints <span class="keyword">where</span> constraint_type=<span class="string">'R'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="string">'alter table '</span>||table_name||<span class="string">' disable constraint '</span>||constraint_name||<span class="string">';'</span> <span class="keyword">from</span> user_constraints <span class="keyword">where</span> constraint_type=<span class="string">'R'</span> ;</span><br></pre></td></tr></table></figure>
+<h2 id="数据迁移"><a href="#数据迁移" class="headerlink" title="数据迁移"></a>数据迁移</h2><h4 id="数据泵"><a href="#数据泵" class="headerlink" title="数据泵"></a>数据泵</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 第一步：迁移准备，默认参数</span></span><br><span class="line">select * from dba_directories;</span><br><span class="line"></span><br><span class="line">create directory dir_dp  as <span class="string">'/oradata1/backdp'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 第二步:备份数据</span></span><br><span class="line">expdp <span class="string">'dbusername/******#@dbnms'</span> directory=DIR_DP dumpfile=LOG_P_20200930.dmp tables=USERLOGINFO:P_20200930 logfile=LOG_EXP_20200930.log &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 第三步：Rename历史表</span></span><br><span class="line">rename USERLOGINFO to USERLOGINFO_20200910;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 第四步：重建表数据</span></span><br><span class="line">impdp <span class="string">'dbusername/******#@dbnms'</span> directory=DIR_DP dumpfile=LOG_P_20200930.dmp remap_tablespace=DATALIST:DATALOG logfile=LOG_IMP_20200930.log &amp;</span><br><span class="line"></span><br><span class="line">impdp <span class="string">'dbusername/******@@dbnms'</span> directory=DIR_DP dumpfile=LOG_P_20200831.dmp remap_tablespace=DATALIST:DATALOG logfile=LOG_IMP_20200831.log table_exists_action=append &amp;</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li><strong>REMAP_TABLE feature was only introduced in 11G</strong></li>
+</ul>
+<h3 id="Expdp"><a href="#Expdp" class="headerlink" title="Expdp"></a>Expdp</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># more LOG_EXP_20200930.log</span></span><br><span class="line">;;;</span><br><span class="line">Export: Release 10.2.0.4.0 - 64bit Production on Thursday, 10 September, 2020 23:25:16</span><br><span class="line"></span><br><span class="line">Copyright (c) 2003, 2007, Oracle.  All rights reserved.</span><br><span class="line">;;;</span><br><span class="line">Connected to: Oracle Database 10g Enterprise Edition Release 10.2.0.4.0 - 64bit Production</span><br><span class="line">With the Partitioning, OLAP, Data Mining and Real Application Testing options</span><br><span class="line">Starting <span class="string">"DBUSER"</span>.<span class="string">"SYS_EXPORT_TABLE_04"</span>:  dbusername/********@dbnms directory=DIR_DP dumpfile=LOG_P_20200930.dmp tables=USERLOGINFO:P_20200930 logfile=LOG_EXP_20200930.log</span><br><span class="line">Estimate <span class="keyword">in</span> progress using BLOCKS method...</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/TABLE_DATA</span><br><span class="line">Total estimation using BLOCKS method: 4.994 GB</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/TABLE</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/INDEX/INDEX</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS</span><br><span class="line">. . exported <span class="string">"DBUSER"</span>.<span class="string">"USERLOGINFO"</span>:<span class="string">"P_20200930"</span>         4.335 GB 46060706 rows</span><br><span class="line">Master table <span class="string">"DBUSER"</span>.<span class="string">"SYS_EXPORT_TABLE_04"</span> successfully loaded/unloaded</span><br><span class="line">******************************************************************************</span><br><span class="line">Dump file <span class="built_in">set</span> <span class="keyword">for</span> SLVIEW.SYS_EXPORT_TABLE_04 is:</span><br><span class="line">  /oradata1/backdp/LOG_P_20200930.dmp</span><br><span class="line">Job <span class="string">"DBUSER"</span>.<span class="string">"SYS_EXPORT_TABLE_04"</span> successfully completed at 23:47:46</span><br></pre></td></tr></table></figure>
+<h3 id="Impdp"><a href="#Impdp" class="headerlink" title="Impdp"></a>Impdp</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ more LOG_IMP_20200930.log</span><br><span class="line">;;;</span><br><span class="line">Import: Release 10.2.0.4.0 - 64bit Production on Friday, 11 September, 2020 0:17:07</span><br><span class="line"></span><br><span class="line">Copyright (c) 2003, 2007, Oracle.  All rights reserved.</span><br><span class="line">;;;</span><br><span class="line">Connected to: Oracle Database 10g Enterprise Edition Release 10.2.0.4.0 - 64bit Production</span><br><span class="line">With the Partitioning, OLAP, Data Mining and Real Application Testing options</span><br><span class="line">Master table <span class="string">"DBUSER"</span>.<span class="string">"SYS_IMPORT_FULL_01"</span> successfully loaded/unloaded</span><br><span class="line">Starting <span class="string">"DBUSER"</span>.<span class="string">"SYS_IMPORT_FULL_01"</span>:  dbusername/********@dbnms directory=DIR_DP dumpfile=LOG_P_20200930.dmp remap_tablespace=DATALIST:DATALOG logfile=LOG_IMP_20200930.log</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/TABLE</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/TABLE_DATA</span><br><span class="line">. . imported <span class="string">"DBUSER"</span>.<span class="string">"USERLOGINFO"</span>:<span class="string">"P_20200930"</span>         4.335 GB 46060706 rows</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/INDEX/INDEX</span><br><span class="line">ORA-31684: Object <span class="built_in">type</span> INDEX:<span class="string">"SLVIEW"</span>.<span class="string">"IND_USERLOGINFO_LOGTIME"</span> already exists</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS</span><br><span class="line">ORA-39111: Dependent object <span class="built_in">type</span> INDEX_STATISTICS skipped, base object <span class="built_in">type</span> INDEX:<span class="string">"DBUSER"</span>.<span class="string">"IND_USERLOGINFO_LOGTIME"</span> already exists</span><br><span class="line">Processing object <span class="built_in">type</span> TABLE_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS</span><br></pre></td></tr></table></figure>
+<h4 id="Impdp参数"><a href="#Impdp参数" class="headerlink" title="Impdp参数"></a>Impdp参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">REMAP_SCHEMA=scott:system   更改owner</span><br><span class="line">TABLESPACES=example   导入表空间</span><br><span class="line">TABLE_EXISTS_ACTION   追加数据</span><br><span class="line">table_exists_action   </span><br><span class="line">&#123;</span><br><span class="line">      skip 如果已存在表，则跳过并处理下一个对象；</span><br><span class="line">      append 为表增加数据；</span><br><span class="line">      truncate 截断表，然后为其增加新数据；</span><br><span class="line">      replace 删除已存在表，重新建表并追加数据</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="迁移过程"><a href="#迁移过程" class="headerlink" title="迁移过程"></a>迁移过程</h3><h4 id="监控利用率"><a href="#监控利用率" class="headerlink" title="监控利用率"></a>监控利用率</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SELECT a.tablespace_name <span class="string">"表空间名"</span>,</span><br><span class="line">round(total) <span class="string">"表空间大小"</span>,</span><br><span class="line">free <span class="string">"表空间剩余大小"</span>,</span><br><span class="line">round((total - free)) <span class="string">"表空间使用大小"</span>,</span><br><span class="line">round(total / (1024 * 1024 * 1024)) <span class="string">"表空间大小(G)"</span>,</span><br><span class="line">round(free / (1024 * 1024 * 1024)) <span class="string">"表空间剩余大小(G)"</span>,</span><br><span class="line">round((total - free) / (1024 * 1024 * 1024)) <span class="string">"表空间使用大小(G)"</span>,</span><br><span class="line">round((total - free) / total, 4) * 100 <span class="string">"使用率 %"</span></span><br><span class="line">FROM (SELECT tablespace_name, SUM(bytes) free</span><br><span class="line">FROM dba_free_space</span><br><span class="line">GROUP BY tablespace_name) a,</span><br><span class="line">(SELECT tablespace_name, SUM(bytes) total</span><br><span class="line">FROM dba_data_files</span><br><span class="line">GROUP BY tablespace_name) b</span><br><span class="line">WHERE a.tablespace_name = b.tablespace_name</span><br><span class="line">--and round((total - free) / total, 4) * 100 &gt; 80</span><br><span class="line">order by round((total - free) / total, 4) * 100 desc</span><br></pre></td></tr></table></figure>
+<h4 id="调整表空间"><a href="#调整表空间" class="headerlink" title="调整表空间"></a>调整表空间</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLESPACE DATAFLUX ADD DATAFILE <span class="string">'/oradata6/dbnms/dataflux601.dbf'</span> SIZE  4096M;</span><br><span class="line"></span><br><span class="line">--1、查看表空间的名称及大小</span><br><span class="line">SELECT t.tablespace_name, round(SUM(bytes / (1024 * 1024)), 0) ts_size</span><br><span class="line">FROM dba_tablespaces t, dba_data_files d</span><br><span class="line">WHERE t.tablespace_name = d.tablespace_name</span><br><span class="line">GROUP BY t.tablespace_name;</span><br><span class="line">--2、查看表空间物理文件的名称及大小</span><br><span class="line">SELECT tablespace_name,</span><br><span class="line">file_id,</span><br><span class="line">file_name,</span><br><span class="line">round(bytes / (1024 * 1024), 0) total_space</span><br><span class="line">FROM dba_data_files</span><br><span class="line"><span class="built_in">where</span>  tablespace_name=<span class="string">'DATACFG'</span></span><br><span class="line">ORDER BY tablespace_name;</span><br><span class="line"></span><br><span class="line">select * from dba_data_files;</span><br><span class="line"></span><br><span class="line">--3、查看回滚段名称及大小</span><br><span class="line">SELECT segment_name,</span><br><span class="line">tablespace_name,</span><br><span class="line">r.status,</span><br><span class="line">(initial_extent / 1024) initialextent,</span><br><span class="line">(next_extent / 1024) nextextent,</span><br><span class="line">max_extents,</span><br><span class="line">v.curext curextent</span><br><span class="line">FROM dba_rollback_segs r, v<span class="variable">$rollstat</span> v</span><br><span class="line">WHERE r.segment_id = v.usn(+)</span><br><span class="line">ORDER BY segment_name;</span><br><span class="line">--4、查看控制文件</span><br><span class="line">SELECT NAME FROM v<span class="variable">$controlfile</span>;</span><br><span class="line">--5、查看日志文件</span><br><span class="line">SELECT MEMBER FROM v<span class="variable">$logfile</span>;</span><br><span class="line">--6、查看表空间的使用情况</span><br><span class="line">SELECT SUM(bytes) / (1024 * 1024) AS free_space, tablespace_name</span><br><span class="line">FROM dba_free_space</span><br><span class="line">GROUP BY tablespace_name;</span><br><span class="line">SELECT a.tablespace_name,</span><br><span class="line">a.bytes total,</span><br><span class="line">b.bytes used,</span><br><span class="line">c.bytes free,</span><br><span class="line">(b.bytes * 100) / a.bytes <span class="string">"% USED "</span>,</span><br><span class="line">(c.bytes * 100) / a.bytes <span class="string">"% FREE "</span></span><br><span class="line">FROM sys.sm<span class="variable">$ts_avail</span> a, sys.sm<span class="variable">$ts_used</span> b, sys.sm<span class="variable">$ts_free</span> c</span><br><span class="line">WHERE a.tablespace_name = b.tablespace_name</span><br><span class="line">AND a.tablespace_name = c.tablespace_name;</span><br><span class="line">--7、查看数据库库对象</span><br><span class="line">SELECT owner, object_type, status, COUNT(*) count<span class="comment">#</span></span><br><span class="line">FROM all_objects</span><br><span class="line">GROUP BY owner, object_type, status;</span><br><span class="line">--8、查看数据库的版本　</span><br><span class="line">SELECT version</span><br><span class="line">FROM product_component_version</span><br><span class="line">WHERE substr(product, 1, 6) = <span class="string">'Oracle'</span>;</span><br><span class="line">--9、查看数据库的创建日期和归档方式</span><br><span class="line">SELECT created, log_mode, log_mode FROM v<span class="variable">$database</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams.htm#REFRN001" target="_blank" rel="noopener">Oracle initparams</a></li>
+<li><a href="https://docs.oracle.com/en/middleware/goldengate/index.html" target="_blank" rel="noopener">Oracle GoldenGate Doc</a></li>
+<li><a href="https://www.oracle.com/technetwork/cn/community/developer-day/3-goldengate-289794-zhs.pdf" target="_blank" rel="noopener">Oracle GoldenGate 产品介绍</a></li>
+<li><a href="https://docs.oracle.com/goldengate/c1230/gg-winux/GGSAU/GGSAU.pdf" target="_blank" rel="noopener">Using Oracle GoldenGate Microservices Architecture</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/11/21/Technology-Oracle-Ops/" data-id="cki5q0rh100j37u9kxj5nem8y" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =20
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/30/Technology-Performance-Tuning/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          性能优化技术实践
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/03/Machine-Learning-Uber/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Uber 业务预测系统实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#INSTALL"><span class="toc-number">2.</span> <span class="toc-text">INSTALL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Security"><span class="toc-number">2.0.1.</span> <span class="toc-text">Security</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Init-Params"><span class="toc-number">2.0.2.</span> <span class="toc-text">Init Params</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Optimizing"><span class="toc-number">3.</span> <span class="toc-text">Optimizing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Metric"><span class="toc-number">3.0.1.</span> <span class="toc-text">Metric</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Events"><span class="toc-number">3.0.2.</span> <span class="toc-text">Events</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL"><span class="toc-number">3.0.3.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#INDEX"><span class="toc-number">3.0.4.</span> <span class="toc-text">INDEX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lock"><span class="toc-number">3.0.5.</span> <span class="toc-text">Lock</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Constraint"><span class="toc-number">3.0.6.</span> <span class="toc-text">Constraint</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据迁移"><span class="toc-number">4.</span> <span class="toc-text">数据迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据泵"><span class="toc-number">4.0.1.</span> <span class="toc-text">数据泵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意事项"><span class="toc-number">4.0.2.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Expdp"><span class="toc-number">4.1.</span> <span class="toc-text">Expdp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Impdp"><span class="toc-number">4.2.</span> <span class="toc-text">Impdp</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Impdp参数"><span class="toc-number">4.2.1.</span> <span class="toc-text">Impdp参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迁移过程"><span class="toc-number">4.3.</span> <span class="toc-text">迁移过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#监控利用率"><span class="toc-number">4.3.1.</span> <span class="toc-text">监控利用率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调整表空间"><span class="toc-number">4.3.2.</span> <span class="toc-text">调整表空间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2020 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275256320'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1275256320%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+     </div>
+  </div>
+  <div class="outer">
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <a target="_blank" href="http://www.beian.miit.gov.cn" style="display:inline-block;text-decoration:none;"><p style="float:left;margin: 0px 0px 0px 5px; color:#939393;">粤ICP备18143203号</p></a>
+      <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44010602005988" style="display:inline-block;text-decoration:none;"><img src="https://riboseyim.com/cdn/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" style="float:left;"><p style="float:left;margin: 0px 0px 0px 5px; color:#939393;">粤公网安备 44010602005988号</p></a>
+    </div>
+  </div>
+</footer>
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/Engineering" class="mobile-nav-link">工程</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.github.io" class="mobile-nav-link">RiboseYim&#39;s HOME</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://riboseyim.com/cdn/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
